@@ -48,7 +48,7 @@ const Catalog = () => {
         }
     }
 
-    function handleCloseModal(refreshData?: boolean = false) {
+    function handleCloseModal(refreshData?: boolean) {
         setShowAdd(false)
         setDetail(null)
         if (refreshData) getDataCatalog()

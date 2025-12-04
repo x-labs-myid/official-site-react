@@ -27,7 +27,7 @@ const Edit = (
             apps_guid: detail.apps_guid || "",
             name: detail.name || "",
             content: detail.content || "",
-            public: detail.public || false
+            public: detail.public === "true"
         }
     })
 

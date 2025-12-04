@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { getDataApp } from "@/landing-page/api";
 import type { LandingPageAppData } from "@/landing-page/type";
 import { Link } from "react-router-dom";
-import { FaApple, FaGooglePlay } from "react-icons/fa6";
+import { FaApple, FaChevronDown, FaGooglePlay, FaHeart, FaShield } from "react-icons/fa6";
 import globalHook from "@/hooks/global";
+import { Helmet } from "react-helmet-async";
 
 const Main = () => {
     const [data, setData] = useState<LandingPageAppData[]>([]);
@@ -27,8 +28,93 @@ const Main = () => {
 
     return (
         <>
+            <Helmet>
+                <title>X-LABS Applications - X-LABS.my.id | Inovasi dan Pengembangan Aplikasi Mobile</title>
+            </Helmet>
             <div className="min-h-screen bg-gradient-to-br from-primary/10 via-base-100 to-secondary/10">
-                {/* Hero Section */}
+                {/* Greeting Section */}
+                <div className="w-full h-screen flex flex-col justify-center items-center mx-auto px-4 py-4 gap-8">
+                    <img src="https://x-labs.my.id/public/assets/images/icon-v2-white.png" alt="Logo X-LABS" className="w-[80%] lg:w-[50%] xl:w-[50%]" loading="lazy" />
+                    <p className="text-center text-xl lg:text-3xl xl:text-3xl">A simple open source Android app, made with <FaHeart className="inline text-red-500" /> and specially brought to you</p>
+                    <div className="flex gap-8 mb-20">
+                        <a href="https://bsky.app/profile/x-labs.bsky.social" target="_blank" rel="noopener noreferrer" className="btn bg-base-200">
+                            Bluesky
+                        </a>
+                        <a href="https://github.com/x-labs-myid" target="_blank" rel="noopener noreferrer" className="btn bg-base-200">
+                            GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/company/x-labs-myid" target="_blank" rel="noopener noreferrer" className="btn bg-base-200">
+                            LinkedIn
+                        </a>
+                    </div>
+                    <a
+                        href="#store"
+                        className="flex flex-col justify-center items-center shake"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            document.getElementById('store')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                    >
+                        <p className="text-lg mb-3">See Our Official Store</p>
+                        <FaChevronDown className="w-6 h-6" />
+                    </a>
+                </div>
+                {/* Store Section */}
+                <div id="store" className="w-full h-screen flex flex-col justify-center items-center mx-auto gap-2">
+                    <div className="hero min-h-[20vh] bg-base-200">
+                        <div className="hero-content text-center flex flex-col justify-center items-center">
+                            <div className="flex flex-row justify-center items-center text-3xl bg-gradient-to-r from-primary to-secondary bg-clip-text gap-2">
+                                <FaGooglePlay className="w-6 h-6 inline" />
+                                <p>Play Store</p>
+                            </div>
+                            <p>Discover our applications on Google Play Store through two official developer accounts</p>
+                        </div>
+                    </div>
+                    <div className="flex gap-8 my-10">
+                        <div className="card bg-base-100 w-96 shadow-sm">
+                            <figure>
+                                <img
+                                    src="https://cdn.jsdelivr.net/gh/x-labs-myid/app-info/icons-more/store/playstore-only-icon.png"
+                                    alt="Play Store" />
+                            </figure>
+                            <div className="card-body text-center">
+                                <p className="text-3xl">X-LABS | my.id</p>
+                                <p>Official main account</p>
+                                <div className="flex flex-col justify-center items-center gap-2 mt-4">
+                                    <button className="btn btn-success text-white w-full">
+                                        Visit Store
+                                    </button>
+                                    <p className="text-xs">Available on Google Play Store</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card bg-base-100 w-96 shadow-sm">
+                            <figure>
+                                <img
+                                    src="https://cdn.jsdelivr.net/gh/x-labs-myid/app-info/icons-more/store/playstore-only-icon.png"
+                                    alt="Play Store" />
+                            </figure>
+                            <div className="card-body text-center">
+                                <p className="text-3xl">X-LABS Sub | my.id</p>
+                                <p>Official secondary account</p>
+                                <div className="flex flex-col justify-center items-center gap-2 mt-4">
+                                    <button className="btn btn-success text-white w-full">
+                                        Visit Store
+                                    </button>
+                                    <p className="text-xs">Available on Google Play Store</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="alert" className="alert alert-vertical sm:alert-horizontal">
+                        <FaShield className="w-6 h-6" />
+                        <div className="flex flex-col gap-2">
+                            <h3 className="text-xl font-bold">Security Notice</h3>
+                            <div className="text-xs">For your security and app quality assurance, please download applications exclusively from these two verified accounts.</div>
+                        </div>
+                    </div>
+                </div>
+                {/* App Hero Section */}
                 <div className="hero min-h-[10vh] bg-base-200">
                     <div className="hero-content text-center">
                         <div className="py-20 max-w-2xl">
@@ -42,7 +128,7 @@ const Main = () => {
                     </div>
                 </div>
 
-                {/* Carousel Section */}
+                {/* App Carousel Section */}
                 <div className="w-full mx-auto px-4 py-4">
                     <div className="carousel carousel-center w-full space-x-4 bg-transparent p-4 rounded-box">
                         {data.map((item, index) => (

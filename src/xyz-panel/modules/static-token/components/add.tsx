@@ -23,6 +23,7 @@ const Add = ({ show, apps, onClose }: { show: boolean, apps: SchemaCatalogAppsLi
 
     const { fields, append, remove } = useFieldArray({
         control,
+        // @ts-expect-error - useFieldArray doesn't fully support primitive arrays in TypeScript
         name: "allowed_routes"
     })
 
@@ -104,7 +105,7 @@ const Add = ({ show, apps, onClose }: { show: boolean, apps: SchemaCatalogAppsLi
                                         </button>
                                     )}
                                     {index === fields.length - 1 && (
-                                        <button type="button" className="btn btn-ghost btn-xs" onClick={() => append("/")}>
+                                        <button type="button" className="btn btn-ghost btn-xs" onClick={() => append("/" as any)}>
                                             <FaPlus className="w-4 h-4" />
                                         </button>
                                     )}

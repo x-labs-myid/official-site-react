@@ -17,7 +17,7 @@ const Edit = (
     }) => {
     console.log(detail?.public)
     const { toggleLoading, toggleToast } = globalHook()
-    const { register, handleSubmit, control, setValue, formState: { errors }, reset } = useForm<SchemaCatalogRequest>({
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<SchemaCatalogRequest>({
         resolver: zodResolver(schemaCatalogRequest),
         defaultValues: {
             icon_url: detail?.icon_url || "",

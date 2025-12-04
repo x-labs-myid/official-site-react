@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form"
 
 const Add = ({ show, onClose }: { show: boolean, onClose: (refreshData?: boolean) => void }) => {
     const { toggleLoading, toggleToast } = globalHook()
-    const { register, handleSubmit, control, formState: { errors }, reset } = useForm<SchemaCatalogRequest>({
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<SchemaCatalogRequest>({
         resolver: zodResolver(schemaCatalogRequest),
         defaultValues: {
             icon_url: "",
