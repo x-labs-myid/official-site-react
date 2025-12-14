@@ -79,8 +79,8 @@ const StaticToken = () => {
                             <tr>
                                 <th>No</th>
                                 <th>Actions</th>
-                                <th>Token</th>
                                 <th>Name</th>
+                                <th>Token</th>
                                 <th>Type</th>
                                 <th>Allowed Routes</th>
                                 <th>Is Active</th>
@@ -102,8 +102,8 @@ const StaticToken = () => {
                                             </button>
                                         </div>
                                     </td>
-                                    <td>{item.token}</td>
                                     <td>{item.name}</td>
+                                    <td>{item.token}</td>
                                     <td>{item.type}</td>
                                     <td>{item.allowed_routes}</td>
                                     <td>{item.is_active ? "Published" : "Draft"}</td>

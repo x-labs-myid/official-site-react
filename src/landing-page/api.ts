@@ -1,5 +1,18 @@
 import { API_URL } from "@/constant";
-import type { LandingPageAppResponse, LandingPageTermAppResponse } from "./type";
+import type { LandingPageAppResponse, LandingPageOrgProfileResponse, LandingPageTermAppResponse } from "./type";
+
+export async function getDataOrgProfile() {
+    try {
+        const res = await fetch(`${API_URL}/public/organization-profile/COMPANY_NAME`);
+        const data: LandingPageOrgProfileResponse = await res.json();
+        if (!res.ok) {
+            throw new Error(data.message);
+        }
+        return data.data;
+    } catch (e) {
+        throw e;
+    }
+}
 
 export async function getDataApp() {
     try {

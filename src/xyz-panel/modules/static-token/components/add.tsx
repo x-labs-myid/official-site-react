@@ -69,7 +69,8 @@ const Add = ({ show, apps, onClose }: { show: boolean, apps: SchemaCatalogAppsLi
                         <select {...register("type")} className="w-full select select-bordered">
                             <option value="">Select Type</option>
                             <option value="TEST">Test</option>
-                            <option value="PRODUCTION">Production</option>
+                            <option value="DEV">Development</option>
+                            <option value="PROD">Production</option>
                         </select>
                         <span className="text-red-500">{errors.type?.message}</span>
                     </div>

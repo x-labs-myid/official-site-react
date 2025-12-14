@@ -40,3 +40,16 @@ export type LandingPageTermAppData = {
         content: string;
     };
 }
+
+export type LandingPageOrgProfileResponse = {
+    success: boolean;
+    status: string;
+    message: string;
+    data: LandingPageOrgProfileData;
+}
+
+export type LandingPageOrgProfileData = {
+    key: string;
+    value: string;
+}
+

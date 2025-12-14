@@ -1,5 +1,5 @@
 import { FaBars, FaConnectdevelop, FaListOl, FaLockOpen, FaSignOutAlt } from "react-icons/fa";
-import { FaBookOpenReader, FaFireBurner, FaMobileScreen } from "react-icons/fa6";
+import { FaBookOpenReader, FaBuilding, FaFireBurner, FaGlobe, FaLink, FaMobileScreen, FaPeopleGroup } from "react-icons/fa6";
 import { getUser, logout } from "./xyz-panel/utils/auth";
 import { useEffect, useState } from "react";
 import Modal from "./components/ui/Modal";
@@ -80,6 +80,30 @@ const App = ({ children }: { children: React.ReactNode }) => {
                 <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Terms" onClick={() => navigate("/term")}>
                   <FaBookOpenReader />
                   <span className="is-drawer-close:hidden">Terms</span>
+                </button>
+              </li>
+              <li>
+                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Organization" onClick={() => navigate("/organization")}>
+                  <FaBuilding />
+                  <span className="is-drawer-close:hidden">Organization</span>
+                </button>
+              </li>
+              <li>
+                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Team" onClick={() => navigate("/team")}>
+                  <FaPeopleGroup />
+                  <span className="is-drawer-close:hidden">Team</span>
+                </button>
+              </li>
+              <li>
+                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Social Media" onClick={() => navigate("/social-media")}>
+                  <FaGlobe />
+                  <span className="is-drawer-close:hidden">Social Media</span>
+                </button>
+              </li>
+              <li>
+                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Link Social Media" onClick={() => navigate("/link-social-media")}>
+                  <FaLink />
+                  <span className="is-drawer-close:hidden">Link Social Media</span>
                 </button>
               </li>
               <li className="block md:hidden lg:hidden xl:hidden">
