@@ -1,3 +1,15 @@
+export type LandingPageOrgProfileResponse = {
+    success: boolean;
+    status: string;
+    message: string;
+    data: LandingPageOrgProfileData;
+}
+
+export type LandingPageOrgProfileData = {
+    key: string;
+    value: string;
+}
+
 export type LandingPageAppResponse = {
     success: boolean;
     status: string;
@@ -17,6 +29,23 @@ export type LandingPageAppData = {
         name: string;
         slug: string;
     }[]
+}
+
+export type LandingPageTeamResponse = {
+    success: boolean;
+    status: string;
+    message: string;
+    data: LandingPageTeamData[];
+}
+
+export type LandingPageTeamData = {
+    name: string;
+    title: string;
+    social_media: {
+        icon: string;
+        name: string;
+        username: string;
+    }[];
 }
 
 
@@ -39,17 +68,5 @@ export type LandingPageTermAppData = {
         name: string;
         content: string;
     };
-}
-
-export type LandingPageOrgProfileResponse = {
-    success: boolean;
-    status: string;
-    message: string;
-    data: LandingPageOrgProfileData;
-}
-
-export type LandingPageOrgProfileData = {
-    key: string;
-    value: string;
 }
 

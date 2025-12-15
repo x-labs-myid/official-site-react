@@ -1,9 +1,9 @@
+// Store Section
 import { FaGooglePlay, FaShield } from "react-icons/fa6"
 
 const Store = () => {
     return (
         <>
-            {/* Store Section */}
             <div id="store" className="w-full h-auto lg:h-screen xl:h-screen flex flex-col justify-center items-center mx-auto gap-2 mb-14 lg:mb-0 xl:mb-0">
                 <div className="hero min-h-[20vh] bg-base-200">
                     <div className="hero-content text-center flex flex-col justify-center items-center">
