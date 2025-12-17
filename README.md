@@ -53,9 +53,9 @@ The production build will be available in the dist directory.
 
 ## 🛠️ Tech Stack
 - Frontend Framework: React 19
-- Language: TypeScript 5.1
+- Language: TypeScript 5
 - Build Tool: Vite 4
-- Styling: Tailwind CSS 3 + DaisyUI
+- Styling: Tailwind CSS 4 + DaisyUI
 - State Management: Jotai
 - Form Handling: React Hook Form + Zod
 - Routing: React Router DOM
