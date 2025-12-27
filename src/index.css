@@ -1,33 +1,51 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+@theme {
+  /* dodger-blue (X-LABS Color) */
+  --color-dodger-blue-50: #edfcff;
+  --color-dodger-blue-100: #d6f6ff;
+  --color-dodger-blue-200: #b6f1ff;
+  --color-dodger-blue-300: #84eaff;
+  --color-dodger-blue-400: #4bdbff;
+  --color-dodger-blue-500: #21c1ff;
+  --color-dodger-blue-600: #09a6ff;
+  --color-dodger-blue-700: #0593fc; /* X-LABS Color */
+  --color-dodger-blue-800: #0a6fc3;
+  --color-dodger-blue-900: #0f5e99;
+  --color-dodger-blue-950: #0e395d;
+
+  --color-xlabs-primary: #0593fc;
+  --color-xlabs-secondary: #a1d4ff;
+  --color-green-playstore: #34a853;
+}
+
 /* Animasi shake vertikal */
 @keyframes shake {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
 
-    0%,
-    100% {
-        transform: translateY(0);
-    }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateY(-10px);
+    /* ke atas */
+  }
 
-    10%,
-    30%,
-    50%,
-    70%,
-    90% {
-        transform: translateY(-10px);
-        /* ke atas */
-    }
-
-    20%,
-    40%,
-    60%,
-    80% {
-        transform: translateY(10px);
-        /* ke bawah */
-    }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateY(10px);
+    /* ke bawah */
+  }
 }
 
 .shake {
-    /* Jalankan animasi tak henti (infinite) */
-    animation: shake 10s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+  /* Jalankan animasi tak henti (infinite) */
+  animation: shake 10s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
 }
