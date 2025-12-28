@@ -170,7 +170,7 @@ const Footer = () => {
           <div className="mb-4">
             <span className="mr-2">2019–{currentYear} &copy;</span>
             <img
-              src="https://x-labs.my.id/public/assets/images/icon-v2-white.png"
+              src="/icon-v2-white.png"
               alt="Logo"
               className="inline-block h-4 opacity-80"
               loading="lazy"
