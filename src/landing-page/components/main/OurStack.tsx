@@ -110,7 +110,7 @@ const stackList = [
 
 const OurStack = () => {
   return (
-    <div data-theme="light">
+    <div id="stack" data-theme="light">
       <div className="w-full h-auto lg:h-screen xl:h-screen flex flex-col justify-center items-center mx-auto gap-2 lg:mb-0 xl:mb-0">
         <div className="hero min-h-[20vh] bg-light">
           <div className="hero-content text-center flex flex-col justify-center items-center">

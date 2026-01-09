@@ -4,7 +4,10 @@ import { FaPeopleGroup } from "react-icons/fa6";
 const Team = ({ teamList }: { teamList: LandingPageTeamData[] }) => {
   return (
     <>
-      <div className="w-full h-auto lg:h-screen xl:h-screen flex flex-col justify-center items-center mx-auto gap-2 mb-14 lg:mb-0 xl:mb-0 bg-dark">
+      <div
+        id="team"
+        className="w-full h-auto lg:h-screen xl:h-screen flex flex-col justify-center items-center mx-auto gap-2 mb-14 lg:mb-0 xl:mb-0 bg-dark"
+      >
         <div className="hero min-h-[20vh]">
           <div className="hero-content text-center flex flex-col justify-center items-center">
             <div className="flex flex-row justify-center items-center text-3xl bg-gradient-to-r from-primary to-secondary bg-clip-text gap-2">

@@ -5,7 +5,10 @@ const Greeting = () => {
   return (
     <>
       {/* Greeting Section */}
-      <div className="w-full min-h-screen flex flex-col justify-center items-center mx-auto gap-4 py-10 px-4">
+      <div
+        id="home"
+        className="w-full min-h-screen flex flex-col justify-center items-center mx-auto gap-4 py-10 px-4"
+      >
         <img
           src="/icon-v2-white.png"
           alt="Logo X-LABS"

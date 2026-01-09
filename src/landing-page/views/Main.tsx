@@ -15,6 +15,7 @@ import Team from "../components/main/Team";
 import OurStack from "../components/main/OurStack";
 import SupportUs from "../components/main/SupportUs";
 import Footer from "../components/main/Footer";
+import Navbar from "../components/main/Navbar";
 
 import type {
   LandingPageAppData,
@@ -65,6 +66,11 @@ const Main = () => {
         </title>
       </Helmet>
       <div className="min-h-screen bg-gradient-to-br from-primary/10 via-base-100 to-secondary/10">
+        <Navbar
+          hasStore={storeList.length > 0}
+          hasApps={appList.length > 0}
+          hasTeam={teamList.length > 0}
+        />
         <Greeting />
         <AboutUs />
         {storeList.length > 0 && <Store storeList={storeList} />}

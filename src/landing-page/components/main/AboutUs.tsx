@@ -16,7 +16,7 @@ import {
 // About Us Section
 const AboutUs = () => {
   return (
-    <div data-theme="light">
+    <div id="about" data-theme="light">
       <div className="w-full min-h-screen flex flex-col justify-center items-center mx-auto gap-4 py-10 px-4">
         <div className="hero bg-light">
           <div className="hero-content text-center flex flex-col justify-center items-center">
