@@ -15,11 +15,11 @@ const WithParam = () => {
 
   async function getData() {
     try {
-      toggleLoading(true, `Lagi ngambil data ${app}...`);
+      toggleLoading(true, `Fetching data for ${app}...`);
       const res = await getDataTermApp(`${app}/${slug}`);
       setData(res);
     } catch (e) {
-      const message = e instanceof Error ? e.message : "Terjadi kesalahan";
+      const message = e instanceof Error ? e.message : "An error occurred";
       toggleToast(true, message, "error");
     } finally {
       toggleLoading(false);
@@ -35,7 +35,7 @@ const WithParam = () => {
   const formatDate = (dateString?: string) => {
     if (!dateString) return "-";
     const date = new Date(dateString);
-    return new Intl.DateTimeFormat("id-ID", {
+    return new Intl.DateTimeFormat("en-US", {
       day: "numeric",
       month: "long",
       year: "numeric",
@@ -52,8 +52,8 @@ const WithParam = () => {
       <Helmet>
         <title>
           {titleWeb
-            ? `${titleWeb} - X-LABS.my.id | Inovasi dan Pengembangan Aplikasi Mobile`
-            : "X-LABS.my.id | Inovasi dan Pengembangan Aplikasi Mobile"}
+            ? `${titleWeb} - X-LABS.my.id | Mobile Application Development and Innovation`
+            : "X-LABS.my.id | Mobile Application Development and Innovation"}
         </title>
       </Helmet>
 
@@ -117,7 +117,7 @@ const WithParam = () => {
                   d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              <span>Terakhir diperbarui: {formattedDate}</span>
+              <span>Last updated: {formattedDate}</span>
             </div>
           </div>
         </section>

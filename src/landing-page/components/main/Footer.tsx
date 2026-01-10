@@ -9,13 +9,13 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-neutral text-neutral-content py-10 px-4 md:px-10">
+    <footer className="w-full bg-neutral text-neutral-content py-12 px-4 md:px-10">
       <div className="container mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
           <div>
             <h5 className="font-bold border-b-2 border-neutral-content pb-2 mb-4 flex items-center gap-2">
               <FaShop />
-              Features Apps
+              Featured Apps
             </h5>
             <ul className="flex flex-col gap-2 text-sm">
               <li>
@@ -101,7 +101,7 @@ const Footer = () => {
           <div>
             <h5 className="font-bold border-b-2 border-neutral-content pb-2 mb-4 flex items-center gap-2">
               <FaArrowUpRightFromSquare />
-              External Link
+              External Links
             </h5>
             <ul className="flex flex-col gap-2 text-sm">
               <li>
@@ -177,7 +177,7 @@ const Footer = () => {
             />
           </div>
           <p className="text-sm">
-            Develop by{" "}
+            Developed by{" "}
             <a rel="noopener noreferrer" className="font-bold">
               X-LABS | my.id Teams
             </a>

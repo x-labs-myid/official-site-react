@@ -41,7 +41,7 @@ const SimpleNavbar = () => {
           onClick={() => navigate("/")}
           className="btn btn-sm btn-ghost text-white hover:bg-white/10 rounded-full normal-case"
         >
-          Kembali ke Beranda
+          Back to Home
         </button>
       </div>
     </div>

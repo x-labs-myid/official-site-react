@@ -1,4 +1,4 @@
-import { FaChevronDown, FaGithub, FaHeart, FaLinkedin } from "react-icons/fa6";
+import { FaGithub, FaHeart, FaLinkedin } from "react-icons/fa6";
 import { PiButterfly } from "react-icons/pi";
 
 const Greeting = () => {
@@ -7,7 +7,7 @@ const Greeting = () => {
       {/* Greeting Section */}
       <div
         id="home"
-        className="w-full min-h-screen flex flex-col justify-center items-center mx-auto gap-4 py-10 px-4"
+        className="w-full min-h-screen flex flex-col justify-center items-center mx-auto gap-4 py-20 px-4"
       >
         <img
           src="/icon-v2-white.png"

@@ -111,7 +111,7 @@ const stackList = [
 const OurStack = () => {
   return (
     <div id="stack" data-theme="light">
-      <div className="w-full h-auto lg:h-screen xl:h-screen flex flex-col justify-center items-center mx-auto gap-2 lg:mb-0 xl:mb-0">
+      <div className="w-full min-h-screen flex flex-col justify-center items-center mx-auto gap-2 py-20 lg:mb-0 xl:mb-0">
         <div className="hero min-h-[20vh] bg-light">
           <div className="hero-content text-center flex flex-col justify-center items-center">
             <div className="flex flex-row justify-center items-center gap-2 text-3xl text-xlabs-primary">
@@ -125,7 +125,7 @@ const OurStack = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-row lg:flex-col gap-5 my-1 w-full max-w-4xl px-4">
+        <div className="flex flex-row lg:flex-col gap-5 my-1 w-full max-w-7xl px-4">
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 w-full place-items-center">
             {stackList.map((item, index) => (
               <div key={index} className="tooltip" data-tip={item.name}>

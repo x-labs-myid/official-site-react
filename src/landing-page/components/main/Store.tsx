@@ -7,7 +7,7 @@ const Store = ({ storeList }: { storeList: LandingPageStoreData[] }) => {
     <>
       <div
         id="store"
-        className="w-full h-auto lg:h-screen xl:h-screen flex flex-col justify-center items-center mx-auto gap-2 lg:mb-0 xl:mb-0"
+        className="w-full min-h-screen flex flex-col justify-center items-center mx-auto gap-2 py-20 lg:mb-0 xl:mb-0"
       >
         <div className="hero min-h-[20vh] bg-dark">
           <div className="hero-content text-center flex flex-col justify-center items-center">
@@ -23,16 +23,16 @@ const Store = ({ storeList }: { storeList: LandingPageStoreData[] }) => {
         </div>
         <div className="flex flex-col lg:flex-row gap-8 my-10">
           {storeList.map((store) => (
-            <div className="card bg-white text-gray-800 w-96 pt-5 shadow-sm">
+            <div className="card bg-white text-gray-800 max-w-md pt-5 shadow-sm w-96">
               <figure>
                 <img src={store.logo} width={100} alt="Play Store" />
               </figure>
               <div className="card-body text-center text-black">
-                <p className="text-3xl">{store.store_name}</p>
+                <p className="text-2xl">{store.store_name}</p>
                 <p>
                   {store.store_name === "X-LABS | my.id"
                     ? "Official main account"
-                    : "Official other-account"}
+                    : "Official Backup Account"}
                 </p>
                 <div className="flex flex-col justify-center items-center gap-2 mt-4">
                   <button

@@ -57,8 +57,8 @@ const SupportUs = () => {
   }, []);
 
   return (
-    <section id="support-us" className="bg-[#6f42c1] py-12">
-      <div className="w-full h-auto lg:h-screen xl:h-screen flex flex-col justify-center items-center mx-auto gap-2 lg:mb-0 xl:mb-0 px-4">
+    <section id="support-us" className="bg-[#6f42c1] w-full">
+      <div className="w-full min-h-screen flex flex-col justify-center items-center mx-auto gap-2 py-20 lg:mb-0 xl:mb-0 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-white text-3xl font-bold mb-3 flex items-center justify-center gap-2">

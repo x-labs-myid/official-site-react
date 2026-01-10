@@ -82,7 +82,7 @@ const AppList = ({ appList }: { appList: LandingPageAppData[] }) => {
 
   return (
     <div id="apps" data-theme="light">
-      <div className="w-full h-auto lg:h-screen xl:h-screen flex flex-col justify-center items-center mx-auto gap-2 lg:mb-0 xl:mb-0">
+      <div className="w-full min-h-screen flex flex-col justify-center items-center mx-auto gap-2 py-20 lg:mb-0 xl:mb-0">
         <div className="hero min-h-[20vh] bg-light">
           <div className="hero-content text-center flex flex-col justify-center items-center">
             <div className="flex flex-row justify-center items-center gap-2 text-3xl text-xlabs-primary">
@@ -183,7 +183,7 @@ const AppList = ({ appList }: { appList: LandingPageAppData[] }) => {
                           className="btn btn-ghost btn-sm text-primary hover:bg-primary/10"
                           onMouseDown={(e) => e.stopPropagation()}
                         >
-                          Lihat Detail
+                          View Details
                         </Link>
                       </div>
                     </div>

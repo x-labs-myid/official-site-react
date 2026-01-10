@@ -12,7 +12,7 @@ import {
 const AboutUs = () => {
   return (
     <div id="about" data-theme="light">
-      <div className="w-full min-h-screen flex flex-col justify-center items-center mx-auto gap-4 py-10 px-4">
+      <div className="w-full min-h-screen flex flex-col justify-center items-center mx-auto gap-4 py-20 px-4">
         <div className="hero bg-light">
           <div className="hero-content text-center flex flex-col justify-center items-center">
             <div className="flex flex-row justify-center items-center gap-2 text-3xl text-xlabs-primary">
