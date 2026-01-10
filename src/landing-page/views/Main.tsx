@@ -61,7 +61,7 @@ const Main = () => {
     <>
       <Helmet>
         <title>
-          X-LABS Applications - {orgProfile?.value || "X-LABS.my.id"} | Inovasi
+          {orgProfile?.value || "X-LABS.my.id"} | Inovasi
           dan Pengembangan Aplikasi Mobile
         </title>
       </Helmet>

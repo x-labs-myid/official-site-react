@@ -12,11 +12,13 @@ const Add = ({ show, onClose }: { show: boolean, onClose: (refreshData?: boolean
         defaultValues: {
             icon_url: "",
             name: "",
+            package_name: "",
             short_description: "",
             description: "",
             playstore_url: "",
             appstore_url: "",
-            public: false
+            public: false,
+            is_web: true
         }
     })
 
@@ -51,6 +53,13 @@ const Add = ({ show, onClose }: { show: boolean, onClose: (refreshData?: boolean
                         </label>
                         <input type="text" placeholder="Name" className="input input-bordered w-full" {...register("name")} />
                         {errors.name && <span className="text-red-500">{errors.name.message}</span>}
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Package Name</span>
+                        </label>
+                        <input type="text" placeholder="Package Name" className="input input-bordered w-full" {...register("package_name")} />
+                        {errors.package_name && <span className="text-red-500">{errors.package_name.message}</span>}
                     </div>
                     <div className="form-control">
                         <label className="label">
@@ -91,6 +100,18 @@ const Add = ({ show, onClose }: { show: boolean, onClose: (refreshData?: boolean
                             <option value="false">Draft</option>
                         </select>
                         {errors.public && <span className="text-red-500">{errors.public.message}</span>}
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">For Website?</span>
+                        </label>
+                        <select className="select select-bordered w-full" {...register("is_web", {
+                            setValueAs: (value) => value === "true" ? true : value === "false" ? false : value
+                        })}>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                        {errors.is_web && <span className="text-red-500">{errors.is_web.message}</span>}
                     </div>
                     <div className="flex justify-end gap-2">
                         <button type="button" className="btn btn-ghost" onClick={() => onClose(false)}>Cancel</button>

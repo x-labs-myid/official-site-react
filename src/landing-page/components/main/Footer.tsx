@@ -184,7 +184,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="font-bold hover:underline"
             >
-              Kang Cahya
+              X-LABS | my.id Teams
             </a>
           </p>
         </div>
