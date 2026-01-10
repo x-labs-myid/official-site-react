@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import {
   FaHeart,
   FaRocket,
@@ -9,53 +8,6 @@ import {
 } from "react-icons/fa6";
 
 const SupportUs = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const scriptUrl =
-      "https://edge-cdn.trakteer.id/js/trbtn-overlay.min.js?v=24-01-2025";
-    let script = document.querySelector(
-      `script[src="${scriptUrl}"]`
-    ) as HTMLScriptElement;
-
-    const initBtn = () => {
-      if ((window as any).trbtnOverlay && containerRef.current) {
-        // Clear previous buttons if any to prevent duplicates
-        containerRef.current.innerHTML = "";
-
-        const inlineScript = document.createElement("script");
-        inlineScript.className = "troverlay";
-        inlineScript.type = "text/javascript";
-        inlineScript.innerHTML = `
-          (function() {
-            var trbtnId = trbtnOverlay.init('Support Us on Trakteer', '#0593FC', 'https://trakteer.id/kang_cahya/tip/embed/modal', 'https://edge-cdn.trakteer.id/images/embed/trbtn-icon.png?v=24-01-2025', '40', 'inline');
-            trbtnOverlay.draw(trbtnId);
-          })();
-        `;
-        containerRef.current.appendChild(inlineScript);
-      }
-    };
-
-    if (!script) {
-      script = document.createElement("script");
-      script.src = scriptUrl;
-      script.async = true;
-      document.body.appendChild(script);
-      script.addEventListener("load", initBtn);
-    } else {
-      // If script already exists, check if loaded
-      initBtn();
-      // Also add listener in case it's still loading
-      script.addEventListener("load", initBtn);
-    }
-
-    return () => {
-      if (script) {
-        script.removeEventListener("load", initBtn);
-      }
-    };
-  }, []);
-
   return (
     <section id="support-us" className="bg-[#6f42c1] w-full">
       <div className="w-full min-h-screen flex flex-col justify-center items-center mx-auto gap-2 py-20 lg:mb-0 xl:mb-0 px-4">
