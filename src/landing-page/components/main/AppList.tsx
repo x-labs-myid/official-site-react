@@ -177,7 +177,7 @@ const AppList = ({ appList }: { appList: LandingPageAppData[] }) => {
                         ))}
                       </div>
 
-                      <div className="card-actions mt-6">
+                      {/* <div className="card-actions mt-6">
                         <Link
                           to={`/${item.slug}`}
                           className="btn btn-ghost btn-sm text-primary hover:bg-primary/10"
@@ -185,7 +185,7 @@ const AppList = ({ appList }: { appList: LandingPageAppData[] }) => {
                         >
                           View Details
                         </Link>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 )}
