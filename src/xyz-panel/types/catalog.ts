@@ -3,11 +3,13 @@ import z from "zod";
 export const schemaCatalogRequest = z.object({
     icon_url: z.string(),
     name: z.string(),
+    package_name: z.string(),
     short_description: z.string(),
     description: z.string(),
     playstore_url: z.string(),
     appstore_url: z.string(),
-    public: z.boolean()
+    public: z.boolean(),
+    is_web: z.boolean()
 })
 
 const schemaCatalogChangeStatusRequest = z.object({
@@ -19,11 +21,13 @@ const schemaCatalogData = z.object({
     icon_url: z.string(),
     slug: z.string(),
     name: z.string(),
+    package_name: z.string(),
     short_description: z.string(),
     description: z.string(),
     playstore_url: z.string(),
     appstore_url: z.string(),
     public: z.boolean(),
+    is_web: z.boolean(),
     users_guid: z.string(),
     created_at: z.string(),
     updated_at: z.string(),

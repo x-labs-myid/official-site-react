@@ -1,12 +1,7 @@
 import { FaTachometerAlt, FaMobileAlt } from "react-icons/fa";
 import {
-  FaAddressCard,
-  FaGifts,
   FaGithub,
   FaHeart,
-  FaMobile,
-  FaShield,
-  FaWater,
   FaCompass,
   FaLeaf,
   FaShieldHalved,

@@ -15,17 +15,20 @@ const Edit = (
         detail: SchemaCatalogData | null,
         onClose: (refreshData?: boolean) => void
     }) => {
+        console.log(detail)
     const { toggleLoading, toggleToast } = globalHook()
     const { register, handleSubmit, formState: { errors }, reset } = useForm<SchemaCatalogRequest>({
         resolver: zodResolver(schemaCatalogRequest),
         defaultValues: {
             icon_url: detail?.icon_url || "",
             name: detail?.name || "",
+            package_name: detail?.package_name || "",
             short_description: detail?.short_description || "",
             description: detail?.description || "",
             playstore_url: detail?.playstore_url || "",
             appstore_url: detail?.appstore_url || "",
-            public: detail?.public || false
+            public: detail?.public || false,
+            is_web: detail?.is_web || false
         }
     })
 
@@ -101,6 +104,18 @@ const Edit = (
                             <option value="false">Draft</option>
                         </select>
                         {errors.public && <span className="text-red-500">{errors.public.message}</span>}
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">For Website?</span>
+                        </label>
+                        <select className="select select-bordered w-full" {...register("is_web", {
+                            setValueAs: (value) => value === "true" ? true : value === "false" ? false : value
+                        })}>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                        {errors.is_web && <span className="text-red-500">{errors.is_web.message}</span>}
                     </div>
                     <div className="flex justify-end gap-2">
                         <button type="button" className="btn btn-ghost" onClick={() => onClose(false)}>Cancel</button>
