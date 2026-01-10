@@ -124,16 +124,26 @@ const SupportUs = () => {
                   </div>
 
                   <div className="text-center">
-                    <div
+                    <div className="inline-block p-4 bg-gray-50 rounded-3xl shadow-sm min-h-[60px] min-w-[200px]">
+                      <img
+                        src="/assets/images/qris-payment.jpeg"
+                        alt="QRIS X-LABS | my.id"
+                        className="w-128 h-128 object-cover"
+                      />
+                    </div>
+                    <p className="text-gray-900 text-sm mt-4 mb-0 flex items-center justify-center gap-1">
+                      <FaShieldHalved className="text-green-600" />
+                      Secure payment powered by QRIS
+                    </p>
+                    {/* <div
                       ref={containerRef}
                       className="inline-block p-4 bg-gray-50 rounded-3xl shadow-sm min-h-[60px] min-w-[200px]"
                     >
-                      {/* Trakteer button injected here */}
                     </div>
                     <p className="text-gray-900 text-sm mt-4 mb-0 flex items-center justify-center gap-1">
                       <FaShieldHalved className="text-green-600" />
                       Secure payment powered by Trakteer
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </div>
