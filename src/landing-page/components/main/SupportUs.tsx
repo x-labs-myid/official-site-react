@@ -80,7 +80,7 @@ const SupportUs = () => {
                       <img
                         src="/assets/images/qris-payment.jpeg"
                         alt="QRIS X-LABS | my.id"
-                        className="w-128 h-128 object-cover"
+                        className="w-85 h-85 object-cover"
                       />
                     </div>
                     <p className="text-gray-900 text-sm mt-4 mb-0 flex items-center justify-center gap-1">
