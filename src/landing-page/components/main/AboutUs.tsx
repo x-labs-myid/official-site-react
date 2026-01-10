@@ -36,7 +36,7 @@ const AboutUs = () => {
           <p className="text-center text-lg lg:w-2/3 mx-auto">
             We are a team of passionate developers dedicated to building simple,
             open-source, and high-quality Android apps. Our mission is to create
-            technology that is accessible and useful for everyone.
+            apps that are accessible and useful for everyone.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
