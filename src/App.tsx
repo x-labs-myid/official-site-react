@@ -68,12 +68,13 @@ const App = ({ children }: { children: React.ReactNode }) => {
                 Xyz Panel
                 <img src="/icon-only-v2.png" className="h-5" alt="" />
               </div>
-              <div className="hidden md:block lg:block xl:block">
+              <div className="flex items-center gap-2">
                 <button
-                  className="btn btn-square btn-ghost"
+                  className="btn btn-ghost gap-2 hover:bg-error/10 hover:text-error transition-colors"
                   onClick={() => setModalLogout(true)}
                 >
-                  <FaSignOutAlt />
+                  <FaSignOutAlt className="text-lg" />
+                  <span className="hidden lg:inline font-medium">Logout</span>
                 </button>
               </div>
             </div>
@@ -96,18 +97,18 @@ const App = ({ children }: { children: React.ReactNode }) => {
         title="Apakah kamu yakin mau logout?"
         onClose={() => setModalLogout(false)}
       >
-        <div className="flex justify-end gap-2">
+        <div className="flex justify-center gap-3 mt-6">
           <button
-            className="btn bg-blue-500/90 hover:bg-blue-400/80"
-            onClick={logout}
-          >
-            Ya
-          </button>
-          <button
-            className="btn btn-ghost"
+            className="btn btn-ghost min-w-[100px]"
             onClick={() => setModalLogout(false)}
           >
             Tidak
+          </button>
+          <button
+            className="btn bg-error hover:bg-error/80 text-white min-w-[100px]"
+            onClick={logout}
+          >
+            Ya
           </button>
         </div>
       </Modal>

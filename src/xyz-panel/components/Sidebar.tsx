@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { FaSignOutAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
 import { menuConfig } from "../config/menu";
 
 interface SidebarProps {
@@ -13,6 +13,7 @@ const Sidebar = ({ user, onLogout, isOpen, onToggle }: SidebarProps) => {
   const navigate = useNavigate();
 
   console.log("Sidebar received user:", user);
+  console.log("Sidebar isOpen:", isOpen);
 
   const getFullName = () => {
     if (!user) return "USER";
@@ -45,44 +46,22 @@ const Sidebar = ({ user, onLogout, isOpen, onToggle }: SidebarProps) => {
         }`}
       >
         {/* Sidebar Header */}
-        <div className="w-full bg-base-300 flex flex-col shrink-0 transition-all duration-300 z-50">
-          {isOpen ? (
-            <div className="flex items-center justify-between px-4 py-3">
-              <div className="flex items-center gap-3 overflow-hidden min-w-0">
-                <div className="font-bold text-lg h-10 w-10 flex items-center justify-center bg-base-100 rounded-full text-base-content shadow-sm shrink-0">
-                  {getInitials()}
-                </div>
-                <div className="flex flex-col min-w-0 overflow-hidden">
-                  <span className="font-bold text-sm truncate text-base-content">
-                    {getFullName()}
-                  </span>
-                  {user?.email && (
-                    <span className="text-xs truncate opacity-70 text-base-content">
-                      {user.email}
-                    </span>
-                  )}
-                </div>
-              </div>
-              <button
-                onClick={onToggle}
-                className="btn btn-square btn-sm hidden lg:flex bg-base-100 hover:bg-base-200 border-none text-base-content shadow-sm"
-              >
-                <FaChevronLeft />
-              </button>
-            </div>
-          ) : (
-            <div className="flex flex-col items-center py-4 gap-3">
-              <button
-                onClick={onToggle}
-                className="btn btn-circle btn-xs hidden lg:flex bg-base-100 hover:bg-base-200 border-none text-base-content shadow-sm"
-              >
-                <FaChevronRight />
-              </button>
-              <div className="font-bold text-xl h-10 w-10 flex items-center justify-center bg-base-100 rounded-full text-base-content shadow-sm">
+        <div className="w-full flex flex-col shrink-0 z-[60] border-b border-base-content/10 sticky top-0 mt-16 bg-gradient-to-r from-slate-700 to-gray-800">
+          <div className="flex items-center justify-between px-4 py-3 min-h-[4rem]">
+            <div className="flex items-center gap-3 overflow-hidden min-w-0 flex-1">
+              <div className="font-bold text-lg h-10 w-10 flex items-center justify-center bg-primary text-primary-content rounded-full shadow-lg shrink-0">
                 {getInitials()}
               </div>
+              <div className="flex flex-col min-w-0 overflow-hidden gap-0.5">
+                <span className="font-bold text-sm truncate text-white">
+                  {getFullName()}
+                </span>
+                <span className="text-xs truncate opacity-80 text-gray-200">
+                  {user?.email || user?.username || "No email"}
+                </span>
+              </div>
             </div>
-          )}
+          </div>
         </div>
 
         {/* Menu Items */}
@@ -141,10 +120,14 @@ const Sidebar = ({ user, onLogout, isOpen, onToggle }: SidebarProps) => {
           ))}
 
           {/* Logout Button (Mobile) */}
-          <li className="mt-auto md:hidden lg:hidden xl:hidden">
-            <button className="text-error" onClick={onLogout}>
+          {/* Logout Button (Mobile) */}
+          <li className="mt-auto md:hidden lg:hidden xl:hidden px-2 pb-4">
+            <button
+              className="btn btn-ghost w-full justify-start gap-3 hover:bg-error/10 hover:text-error transition-colors text-error/80"
+              onClick={onLogout}
+            >
               <FaSignOutAlt className="text-lg" />
-              <span>Logout</span>
+              <span className="font-medium">Logout</span>
             </button>
           </li>
         </ul>
