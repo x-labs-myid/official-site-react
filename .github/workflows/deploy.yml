@@ -57,5 +57,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           # port: ${{ secrets.FTP_PORT }} # Enable if using non-standard port (default 21)
           local-dir: ./dist/
-          server-dir: ./ # Change this if you want to upload to a specific subfolder (e.g. ./public_html/)
-          dangerously-force-whitelisted-proto-mismatch: true # Fix for some shared hosting SSL issues
+          server-dir: ./ # Upload directly to the FTP user's root directory
