@@ -1,0 +1,61 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Detect package manager and install dependencies
+      # We check for lock files to determine which package manager to use
+      - name: Detect Package Manager
+        id: prevent
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            echo "manager=pnpm" >> $GITHUB_ENV
+            echo "command=install" >> $GITHUB_ENV
+            echo "runner=pnpm" >> $GITHUB_ENV
+          elif [ -f "yarn.lock" ]; then
+            echo "manager=yarn" >> $GITHUB_ENV
+            echo "command=install" >> $GITHUB_ENV
+            echo "runner=yarn" >> $GITHUB_ENV
+          else
+            echo "manager=npm" >> $GITHUB_ENV
+            echo "command=ci" >> $GITHUB_ENV
+            echo "runner=npm run" >> $GITHUB_ENV
+          fi
+
+      - name: Install pnpm
+        if: env.manager == 'pnpm'
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: Install Dependencies
+        run: ${{ env.manager }} ${{ env.command }}
+
+      - name: Build Project
+        run: ${{ env.manager }} run build
+
+      - name: Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # port: ${{ secrets.FTP_PORT }} # Enable if using non-standard port (default 21)
+          local-dir: ./dist/
+          server-dir: ./ # Change this if you want to upload to a specific subfolder (e.g. ./public_html/)
+          dangerously-force-whitelisted-proto-mismatch: true # Fix for some shared hosting SSL issues
