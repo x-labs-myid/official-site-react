@@ -48,6 +48,10 @@ jobs:
 
       - name: Build Project
         run: ${{ env.manager }} run build
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_KEY_TOKEN: ${{ secrets.VITE_KEY_TOKEN }}
+          VITE_KEY_USER: ${{ secrets.VITE_KEY_USER }}
 
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
