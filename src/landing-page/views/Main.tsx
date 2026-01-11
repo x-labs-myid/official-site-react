@@ -34,7 +34,7 @@ const Main = () => {
 
   async function getData() {
     try {
-      toggleLoading(true, "Lagi ngambil data...");
+      toggleLoading(true, "Loading...");
       const [dataOrgProfile, dataApp, dataTeam, dataStore] = await Promise.all([
         getDataOrgProfile(),
         getDataApp(),
@@ -61,8 +61,8 @@ const Main = () => {
     <>
       <Helmet>
         <title>
-          {orgProfile?.value || "X-LABS.my.id"} | Inovasi
-          dan Pengembangan Aplikasi Mobile
+          {orgProfile?.value || "X-LABS.my.id"} | Inovasi dan Pengembangan
+          Aplikasi Mobile
         </title>
       </Helmet>
       <div className="min-h-screen bg-gradient-to-br from-primary/10 via-base-100 to-secondary/10">

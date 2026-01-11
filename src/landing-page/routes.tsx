@@ -1,15 +1,20 @@
+import { Suspense, lazy } from "react";
 import type { RouteObject } from "react-router-dom";
-import Main from "./views/Main";
-import WithParam from "./views/WithParam";
-import NotFound from "./views/NotFound";
 import LandingWrapper from "@/components/layout/LandingWrapper";
+import Loading from "@/components/ui/Loading";
+
+const Main = lazy(() => import("./views/Main"));
+const WithParam = lazy(() => import("./views/WithParam"));
+const NotFound = lazy(() => import("./views/NotFound"));
 
 export const LandingPageRoutes: RouteObject[] = [
   {
     path: "",
     element: (
       <LandingWrapper>
-        <Main />
+        <Suspense fallback={<Loading forceShow={true} />}>
+          <Main />
+        </Suspense>
       </LandingWrapper>
     ),
   },
@@ -17,7 +22,9 @@ export const LandingPageRoutes: RouteObject[] = [
     path: "/:app/:slug",
     element: (
       <LandingWrapper>
-        <WithParam />
+        <Suspense fallback={<Loading forceShow={true} />}>
+          <WithParam />
+        </Suspense>
       </LandingWrapper>
     ),
   },
@@ -25,7 +32,9 @@ export const LandingPageRoutes: RouteObject[] = [
     path: "/:app/term/:slug",
     element: (
       <LandingWrapper>
-        <WithParam />
+        <Suspense fallback={<Loading forceShow={true} />}>
+          <WithParam />
+        </Suspense>
       </LandingWrapper>
     ),
   },
@@ -33,7 +42,9 @@ export const LandingPageRoutes: RouteObject[] = [
     path: "*",
     element: (
       <LandingWrapper>
-        <NotFound />
+        <Suspense fallback={<Loading forceShow={true} />}>
+          <NotFound />
+        </Suspense>
       </LandingWrapper>
     ),
   },

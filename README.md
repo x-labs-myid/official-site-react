@@ -3,11 +3,12 @@
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.1-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-4.0-646CFF?logo=vite)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1.17-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
 
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js 18.0.0 or later
 - npm (comes with Node.js) or yarn
 - Git
@@ -15,12 +16,14 @@
 ### 🛠️ Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/x-labs-myid/official-site-xlabs-react.git
    cd official-site-xlabs-react
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    # or
@@ -33,6 +36,7 @@
    Copy the `.env.example` file to `.env` and update the values as needed.
 
 4. **Start the development server**
+
    ```bash
    npm run dev
    # or
@@ -42,6 +46,7 @@
    ```
 
 5. 📦 Build for Production
+
 ```bash
 npm run build
 # or
@@ -49,9 +54,11 @@ yarn build
 # or
 pnpm build
 ```
+
 The production build will be available in the dist directory.
 
 ## 🛠️ Tech Stack
+
 - Frontend Framework: React 19
 - Language: TypeScript 5
 - Build Tool: Vite 4
@@ -63,6 +70,7 @@ The production build will be available in the dist directory.
 - Code Formatting: Prettier
 
 ## 📁 Project Structure
+
 ```
 official-site-xlabs-react/
 ├── public/                           # Static files

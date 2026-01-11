@@ -31,8 +31,8 @@ const Store = ({ storeList }: { storeList: LandingPageStoreData[] }) => {
                 <p className="text-2xl">{store.store_name}</p>
                 <p>
                   {store.store_name === "X-LABS | my.id"
-                    ? "Official main account"
-                    : "Official Backup Account"}
+                    ? "Official Main Account"
+                    : "Official Other Account"}
                 </p>
                 <div className="flex flex-col justify-center items-center gap-2 mt-4">
                   <button
