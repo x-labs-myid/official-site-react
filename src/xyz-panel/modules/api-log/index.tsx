@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PageHead from "@/xyz-panel/components/PageHead";
 import globalHook from "@/hooks/global";
-import SearchFilter from "@/components/ui/SearchFilter";
+
 import Pagination from "@/components/ui/Pagination";
 import { getLogApi } from "@/xyz-panel/api/log";
 import type { SchemaLogApiData } from "@/xyz-panel/types/log";
