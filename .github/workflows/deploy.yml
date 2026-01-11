@@ -57,4 +57,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           # port: ${{ secrets.FTP_PORT }} # Enable if using non-standard port (default 21)
           local-dir: ./dist/
-          server-dir: ./x-labs.my.id # Upload directly to the FTP user's root directory
+          server-dir: ./x-labs.my.id/ # Upload directly to the FTP user's root directory
