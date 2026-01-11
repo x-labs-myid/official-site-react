@@ -1,120 +1,95 @@
-import { FaBars, FaConnectdevelop, FaListOl, FaLockOpen, FaSignOutAlt } from "react-icons/fa";
-import { FaBookOpenReader, FaBuilding, FaFireBurner, FaGlobe, FaLink, FaMobileScreen, FaPeopleGroup } from "react-icons/fa6";
+import { FaBars, FaSignOutAlt } from "react-icons/fa";
 import { getUser, logout } from "./xyz-panel/utils/auth";
 import { useEffect, useState } from "react";
 import Modal from "./components/ui/Modal";
-import { useNavigate } from "react-router-dom";
+import Sidebar from "./xyz-panel/components/Sidebar";
+
+const STORAGE_KEY = "sidebar_state";
 
 const App = ({ children }: { children: React.ReactNode }) => {
-  const [username, setUsername] = useState<string>("");
+  const [user, setUser] = useState<any>(null);
   const [modalLogout, setModalLogout] = useState<boolean>(false);
-  const navigate = useNavigate()
+
+  // Initialize state from local storage, default to checked (open)
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved !== null ? JSON.parse(saved) : true;
+  });
 
   useEffect(() => {
-    const user = getUser();
-    setUsername(user.username);
-  }, [username]);
+    const userData = getUser();
+    console.log("User data from localStorage:", userData);
+
+    if (userData && Object.keys(userData).length > 0) {
+      console.log("Setting user:", userData);
+      setUser(userData);
+    } else {
+      console.log("No user data found, using fallback");
+      setUser({
+        username: "Superuser",
+        first_name: "Super",
+        last_name: "User",
+        email: "user@example.com",
+      });
+    }
+  }, []);
+
+  // Sync state to local storage
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev) => {
+      const newState = !prev;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(newState));
+      return newState;
+    });
+  };
+
   return (
     <>
       <div className="drawer lg:drawer-open">
-        <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content">
+        <input
+          id="my-drawer-4"
+          type="checkbox"
+          className="drawer-toggle"
+          checked={isSidebarOpen}
+          onChange={toggleSidebar}
+        />
+        <div className="drawer-content transition-all duration-300">
           <nav className="navbar w-full fixed top-0 left-0 right-0 z-50 bg-base-300">
-            <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost">
+            {/* Mobile Toggle (Hamburger) */}
+            <label
+              htmlFor="my-drawer-4"
+              aria-label="open sidebar"
+              className="btn btn-square btn-ghost"
+            >
               <FaBars />
             </label>
             <div className="w-full flex justify-between items-center">
-              <div className="text-2xl font-bold px-4">Official Site X-Labs</div>
+              <div className="text-2xl font-bold px-4 flex items-center gap-2">
+                Xyz Panel
+                <img src="/icon-only-v2.png" className="h-5" alt="" />
+              </div>
               <div className="hidden md:block lg:block xl:block">
-                <button className="btn btn-square btn-ghost" onClick={() => setModalLogout(true)}>
+                <button
+                  className="btn btn-square btn-ghost"
+                  onClick={() => setModalLogout(true)}
+                >
                   <FaSignOutAlt />
                 </button>
               </div>
             </div>
           </nav>
-          <div className="px-10 pt-24 pb-4 h-screen overflow-y-auto">{children}</div>
-        </div>
-
-        <div className="drawer-side is-drawer-close:overflow-visible">
-          <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-          <div className="flex min-h-full flex-col is-drawer-open:items-start is-drawer-close:items-center bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
-            <div className="text-2xl font-bold text-center bg-base-300 p-4 mt-20 rounded is-drawer-close:block is-drawer-open:hidden">
-              {username.charAt(0).toUpperCase()}
-            </div>
-            <div className="flex items-center justify-between w-full p-4 mt-20 is-drawer-close:hidden is-drawer-open:block">
-              <div className="text-2xl font-bold text-center bg-base-300 p-2 rounded-full">{username.toUpperCase()}</div>
-              <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-            </div>
-            <ul className="menu w-full grow">
-              <li>
-                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Dashboard" onClick={() => navigate("/dashboard")}>
-                  <FaFireBurner />
-                  <span className="is-drawer-close:hidden">Dashboard</span>
-                </button>
-              </li>
-              <li>
-                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="API Log" onClick={() => navigate("/api-log")}>
-                  <FaConnectdevelop />
-                  <span className="is-drawer-close:hidden">API Log</span>
-                </button>
-              </li>
-              <li>
-                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Static Token" onClick={() => navigate("/static-token")}>
-                  <FaLockOpen />
-                  <span className="is-drawer-close:hidden">Static Token</span>
-                </button>
-              </li>
-              <li>
-                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="User Device" onClick={() => navigate("/user-device")}>
-                  <FaMobileScreen />
-                  <span className="is-drawer-close:hidden">User Device</span>
-                </button>
-              </li>
-              <li>
-                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Catalog" onClick={() => navigate("/catalog")}>
-                  <FaListOl />
-                  <span className="is-drawer-close:hidden">Catalog</span>
-                </button>
-              </li>
-              <li>
-                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Terms" onClick={() => navigate("/term")}>
-                  <FaBookOpenReader />
-                  <span className="is-drawer-close:hidden">Terms</span>
-                </button>
-              </li>
-              <li>
-                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Organization" onClick={() => navigate("/organization")}>
-                  <FaBuilding />
-                  <span className="is-drawer-close:hidden">Organization</span>
-                </button>
-              </li>
-              <li>
-                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Team" onClick={() => navigate("/team")}>
-                  <FaPeopleGroup />
-                  <span className="is-drawer-close:hidden">Team</span>
-                </button>
-              </li>
-              <li>
-                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Social Media" onClick={() => navigate("/social-media")}>
-                  <FaGlobe />
-                  <span className="is-drawer-close:hidden">Social Media</span>
-                </button>
-              </li>
-              <li>
-                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Link Social Media" onClick={() => navigate("/link-social-media")}>
-                  <FaLink />
-                  <span className="is-drawer-close:hidden">Link Social Media</span>
-                </button>
-              </li>
-              <li className="block md:hidden lg:hidden xl:hidden">
-                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Logout" onClick={() => setModalLogout(true)}>
-                  <FaSignOutAlt />
-                  <span className="is-drawer-close:hidden">Logout</span>
-                </button>
-              </li>
-            </ul>
+          <div className="px-10 pt-24 pb-4 h-screen overflow-y-auto">
+            {children}
           </div>
         </div>
+
+        {/* Sidebar Component */}
+        <Sidebar
+          user={user}
+          onLogout={() => setModalLogout(true)}
+          isOpen={isSidebarOpen}
+          onToggle={toggleSidebar}
+        />
       </div>
       <Modal
         show={modalLogout}
@@ -122,12 +97,22 @@ const App = ({ children }: { children: React.ReactNode }) => {
         onClose={() => setModalLogout(false)}
       >
         <div className="flex justify-end gap-2">
-          <button className="btn bg-blue-500/90 hover:bg-blue-400/80" onClick={logout}>Ya</button>
-          <button className="btn btn-ghost" onClick={() => setModalLogout(false)}>Tidak</button>
+          <button
+            className="btn bg-blue-500/90 hover:bg-blue-400/80"
+            onClick={logout}
+          >
+            Ya
+          </button>
+          <button
+            className="btn btn-ghost"
+            onClick={() => setModalLogout(false)}
+          >
+            Tidak
+          </button>
         </div>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
