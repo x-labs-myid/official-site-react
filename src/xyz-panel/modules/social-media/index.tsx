@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import PageHead from "@/xyz-panel/components/PageHead";
 import globalHook from "@/hooks/global";
 import { FaPencil, FaPlus, FaTrash } from "react-icons/fa6";
 import type { SchemaSocialMediaData } from "@/xyz-panel/types/social-media";
@@ -89,11 +89,7 @@ const SocialMedia = () => {
   }, []);
   return (
     <>
-      <Helmet>
-        <title>
-          Social Media - X-LABS.my.id | Inovasi dan Pengembangan Aplikasi Mobile
-        </title>
-      </Helmet>
+      <PageHead title="Social Media" />
       <div className="w-full">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-4xl font-bold">Social Media</h1>

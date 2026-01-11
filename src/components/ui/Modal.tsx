@@ -5,11 +5,13 @@ const Modal = ({
   title,
   children,
   onClose,
+  boxClassName = "",
 }: {
   show: boolean;
   title: string;
   children: React.ReactNode;
   onClose: () => void;
+  boxClassName?: string;
 }) => {
   const modalRef = useRef<HTMLDialogElement>(null);
 
@@ -47,7 +49,7 @@ const Modal = ({
       className="modal modal-bottom sm:modal-middle"
       onClick={handleBackdropClick}
     >
-      <div className="modal-box">
+      <div className={`modal-box ${boxClassName}`}>
         <h3 className="font-bold text-lg">{title}</h3>
 
         <div className="mt-4">{children}</div>

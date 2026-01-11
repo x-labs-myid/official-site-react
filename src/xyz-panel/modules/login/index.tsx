@@ -9,7 +9,7 @@ import { login } from "@/xyz-panel/api/auth";
 import globalHook from "@/hooks/global";
 import { setToken, setUser } from "@/xyz-panel/utils/auth";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import PageHead from "@/xyz-panel/components/PageHead";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -51,12 +51,9 @@ const Login = () => {
 
   return (
     <>
-      <Helmet>
-        <title>
-          Login - X-LABS.my.id | Inovasi dan Pengembangan Aplikasi Mobile
-        </title>
-      </Helmet>
+      <PageHead title="Login" />
       <div className="w-full min-h-screen flex items-center justify-center relative overflow-hidden p-4 bg-base-200">
+        {/* ... existing content ... */}
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-slate-700/10 rounded-full blur-3xl animate-pulse"></div>

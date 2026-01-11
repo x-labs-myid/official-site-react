@@ -89,7 +89,6 @@ const App = ({ children }: { children: React.ReactNode }) => {
           user={user}
           onLogout={() => setModalLogout(true)}
           isOpen={isSidebarOpen}
-          onToggle={toggleSidebar}
         />
       </div>
       <Modal

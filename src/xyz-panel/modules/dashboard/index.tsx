@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import PageHead from "@/xyz-panel/components/PageHead";
 import globalHook from "@/hooks/global";
 import { getLogApi, getLogUserDevice } from "@/xyz-panel/api/log";
 
@@ -33,11 +33,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Helmet>
-        <title>
-          Dashboard - X-LABS.my.id | Inovasi dan Pengembangan Aplikasi Mobile
-        </title>
-      </Helmet>
+      <PageHead title="Dashboard" />
       <div className="w-full h-full flex justify-center items-center">
         <div className="w-full lg:w-[50%] xl:w-[50%] grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4">
           <div className="card w-full lg:w-96 xl:w-96 bg-base-200 shadow-xl">

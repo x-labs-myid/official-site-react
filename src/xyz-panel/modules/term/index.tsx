@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import PageHead from "@/xyz-panel/components/PageHead";
 import type { SchemaTermData } from "@/xyz-panel/types/term";
 import { Fragment, useEffect, useState } from "react";
 import { deleteTerms, getTerms } from "@/xyz-panel/api/term";
@@ -80,11 +80,7 @@ const Term = () => {
 
   return (
     <>
-      <Helmet>
-        <title>
-          Terms - X-LABS.my.id | Inovasi dan Pengembangan Aplikasi Mobile
-        </title>
-      </Helmet>
+      <PageHead title="Terms" />
       <div className="w-full">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-4xl font-bold">Terms</h1>
@@ -99,7 +95,9 @@ const Term = () => {
           <table className="table">
             <thead>
               <tr>
-                <th>App Name</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>Content Preview</th>
                 <th>Status</th>
                 <th>Created At</th>
                 <th>Actions</th>
@@ -110,30 +108,67 @@ const Term = () => {
                 <Fragment key={`group-${index}`}>
                   {/* header app name */}
                   <tr>
-                    <td colSpan={4}>
+                    <td colSpan={6} className="bg-base-200/50">
                       <div className="flex items-center gap-2">
-                        <FaBook className="w-4 h-4" />
-                        <span className="font-bold">{group.app_name}</span>
+                        <FaBook className="w-4 h-4 opacity-50" />
+                        <span className="font-bold opacity-75">
+                          {group.app_name}
+                        </span>
                       </div>
                     </td>
                   </tr>
                   {/* isi term per app */}
                   {group.items.map((item: any, i: number) => (
-                    <tr key={`item-${index}-${i}`}>
-                      <td>{item.name}</td>
-                      <td>{item.public ? "Published" : "Draft"}</td>
-                      <td>{item.created_at}</td>
+                    <tr key={`item-${index}-${i}`} className="hover">
+                      <td className="font-medium">{item.name}</td>
+                      <td>
+                        <div className="badge badge-ghost badge-sm font-mono">
+                          {item.slug || "-"}
+                        </div>
+                      </td>
+                      <td className="max-w-xs truncate text-xs opacity-70">
+                        {item.content
+                          ? item.content
+                              .replace(/<[^>]*>/g, "")
+                              .substring(0, 50) +
+                            (item.content.length > 50 ? "..." : "")
+                          : "-"}
+                      </td>
+                      <td>
+                        {item.public ? (
+                          <div className="badge badge-success badge-sm text-black gap-2">
+                            Published
+                          </div>
+                        ) : (
+                          <div className="badge badge-warning badge-sm gap-2">
+                            Draft
+                          </div>
+                        )}
+                      </td>
+                      <td className="font-mono text-xs">
+                        {item.created_at
+                          ? new Date(item.created_at).toLocaleString("id-ID", {
+                              day: "2-digit",
+                              month: "short",
+                              year: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            })
+                          : "-"}
+                      </td>
                       <td>
                         <div className="flex gap-2">
                           <button
                             className="btn bg-blue-500/90 hover:bg-blue-400/80 btn-xs"
                             onClick={() => setDetail(item)}
+                            title="Edit"
                           >
                             <FaPencil className="w-4 h-4" />
                           </button>
                           <button
                             className="btn bg-red-500/90 hover:bg-red-400/80 btn-xs"
                             onClick={() => setIdForDelete(item.guid)}
+                            title="Delete"
                           >
                             <FaTrash className="w-4 h-4" />
                           </button>

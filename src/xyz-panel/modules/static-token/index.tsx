@@ -1,5 +1,12 @@
-import { Helmet } from "react-helmet-async";
-import { FaPencil, FaPlus, FaTrash } from "react-icons/fa6";
+import PageHead from "@/xyz-panel/components/PageHead";
+import {
+  FaChevronDown,
+  FaChevronUp,
+  FaCopy,
+  FaPencil,
+  FaPlus,
+  FaTrash,
+} from "react-icons/fa6";
 import type { SchemaStaticTokenData } from "@/xyz-panel/types/static-token";
 import { useEffect, useState } from "react";
 import {
@@ -18,6 +25,7 @@ const StaticToken = () => {
   const [apps, setApps] = useState<SchemaCatalogAppsListData[]>([]);
   const [detail, setDetail] = useState<SchemaStaticTokenData | null>(null);
   const [idForDelete, setIdForDelete] = useState<string | null>(null);
+  const [expandedRow, setExpandedRow] = useState<number | null>(null);
   const [showAdd, setShowAdd] = useState<boolean>(false);
   const { toggleToast, toggleLoading } = globalHook();
 
@@ -67,16 +75,16 @@ const StaticToken = () => {
     if (refreshData) getData();
   }
 
+  function toggleRow(index: number) {
+    setExpandedRow(expandedRow === index ? null : index);
+  }
+
   useEffect(() => {
     getData();
   }, []);
   return (
     <>
-      <Helmet>
-        <title>
-          Static Token - X-LABS.my.id | Inovasi dan Pengembangan Aplikasi Mobile
-        </title>
-      </Helmet>
+      <PageHead title="Static Token" />
       <div className="w-full">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-4xl font-bold">Static Token</h1>
@@ -91,46 +99,149 @@ const StaticToken = () => {
           <table className="table">
             <thead>
               <tr>
+                <th className="w-12"></th>
                 <th>No</th>
                 <th>Actions</th>
                 <th>Name</th>
                 <th>Token</th>
                 <th>Type</th>
                 <th>Allowed Routes</th>
-                <th>Is Active</th>
+                <th>Status</th>
                 <th>Created At</th>
                 <th>Updated At</th>
               </tr>
             </thead>
             <tbody>
-              {staticToken.map((item, index) => (
-                <tr key={index}>
-                  <th>{index + 1}</th>
-                  <td>
-                    <div className="flex gap-2">
-                      <button
-                        className="btn bg-blue-500/90 hover:bg-blue-400/80 btn-xs"
-                        onClick={() => setDetail(item)}
-                      >
-                        <FaPencil className="w-4 h-4" />
-                      </button>
-                      <button
-                        className="btn bg-red-500/90 hover:bg-red-400/80 btn-xs"
-                        onClick={() => setIdForDelete(item.guid)}
-                      >
-                        <FaTrash className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </td>
-                  <td>{item.name}</td>
-                  <td>{item.token}</td>
-                  <td>{item.type}</td>
-                  <td>{item.allowed_routes}</td>
-                  <td>{item.is_active ? "Published" : "Draft"}</td>
-                  <td>{item.created_at}</td>
-                  <td>{item.updated_at}</td>
-                </tr>
-              ))}
+              {staticToken.map((item, index) => {
+                let routes: string[] = [];
+                try {
+                  routes = JSON.parse(item.allowed_routes);
+                } catch (e) {
+                  routes = [];
+                }
+
+                return (
+                  <>
+                    <tr
+                      key={index}
+                      className="hover cursor-pointer"
+                      onClick={() => toggleRow(index)}
+                    >
+                      <td>
+                        <button className="btn btn-ghost btn-xs">
+                          {expandedRow === index ? (
+                            <FaChevronUp />
+                          ) : (
+                            <FaChevronDown />
+                          )}
+                        </button>
+                      </td>
+                      <th>{index + 1}</th>
+                      <td>
+                        <div className="flex gap-2">
+                          <button
+                            className="btn bg-blue-500/90 hover:bg-blue-400/80 btn-xs"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setDetail(item);
+                            }}
+                          >
+                            <FaPencil className="w-3 h-3 text-white" />
+                          </button>
+                          <button
+                            className="btn bg-red-500/90 hover:bg-red-400/80 btn-xs"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setIdForDelete(item.guid);
+                            }}
+                          >
+                            <FaTrash className="w-3 h-3 text-white" />
+                          </button>
+                        </div>
+                      </td>
+                      <td className="font-bold">{item.name}</td>
+                      <td>
+                        <div className="flex items-center gap-2 group">
+                          <span className="font-mono text-xs opacity-70">
+                            {item.token.substring(0, 10)}...
+                            {item.token.substring(item.token.length - 10)}
+                          </span>
+                          <button
+                            className="btn btn-ghost btn-xs opacity-0 group-hover:opacity-100 transition-opacity"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigator.clipboard.writeText(item.token);
+                              toggleToast(true, "Token copied!", "success");
+                            }}
+                            title="Copy Token"
+                          >
+                            <FaCopy className="w-3 h-3" />
+                          </button>
+                        </div>
+                      </td>
+                      <td>
+                        <div
+                          className={`badge ${
+                            item.type === "PROD"
+                              ? "badge-error"
+                              : item.type === "DEV"
+                              ? "badge-warning"
+                              : "badge-info"
+                          } badge-sm font-bold`}
+                        >
+                          {item.type}
+                        </div>
+                      </td>
+                      <td>
+                        <span className="badge badge-ghost badge-sm font-mono">
+                          {routes.length} Routes
+                        </span>
+                      </td>
+                      <td>
+                        <div
+                          className={`badge ${
+                            item.is_active ? "badge-success" : "badge-ghost"
+                          } badge-sm`}
+                        >
+                          {item.is_active ? "Active" : "Inactive"}
+                        </div>
+                      </td>
+                      <td className="text-xs opacity-60 font-mono">
+                        {item.created_at}
+                      </td>
+                      <td className="text-xs opacity-60 font-mono">
+                        {item.updated_at}
+                      </td>
+                    </tr>
+                    {expandedRow === index && (
+                      <tr>
+                        <td colSpan={10} className="bg-base-200/50 p-0">
+                          <div className="p-4">
+                            <h3 className="font-bold text-sm mb-2 opacity-70">
+                              Allowed Routes Config
+                            </h3>
+                            <div className="flex flex-wrap gap-2">
+                              {routes.map((route, i) => (
+                                <span
+                                  key={i}
+                                  className="badge badge-neutral font-mono"
+                                >
+                                  {route}
+                                </span>
+                              ))}
+                              {routes.length === 0 && (
+                                <span className="text-xs opacity-50 italic">
+                                  No routes configured
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                  </>
+                );
+              })}
             </tbody>
           </table>
         </div>

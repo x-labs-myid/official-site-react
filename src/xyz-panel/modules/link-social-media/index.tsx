@@ -2,7 +2,7 @@ import {
   deleteLinkSocialMedia,
   getLinkSocialMedia,
 } from "@/xyz-panel/api/link-social-media";
-import { Helmet } from "react-helmet-async";
+import PageHead from "@/xyz-panel/components/PageHead";
 import { useState } from "react";
 import globalHook from "@/hooks/global";
 import { type SchemaLinkSocialMediaData } from "@/xyz-panel/types/link-social-media";
@@ -67,12 +67,7 @@ const LinkSocialMedia = () => {
   }, []);
   return (
     <>
-      <Helmet>
-        <title>
-          Link Social Media - X-LABS.my.id | Inovasi dan Pengembangan Aplikasi
-          Mobile
-        </title>
-      </Helmet>
+      <PageHead title="Link Social Media" />
       <div className="w-full">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-4xl font-bold">Link Social Media</h1>

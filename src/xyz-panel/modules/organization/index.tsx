@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import PageHead from "@/xyz-panel/components/PageHead";
 import { FaPencil, FaPlus, FaTrash } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { type SchemaOrgData } from "@/xyz-panel/types/organization";
@@ -62,11 +62,7 @@ const Organization = () => {
 
   return (
     <>
-      <Helmet>
-        <title>
-          Organization - X-LABS.my.id | Inovasi dan Pengembangan Aplikasi Mobile
-        </title>
-      </Helmet>
+      <PageHead title="Organization" />
       <div className="w-full">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-4xl font-bold">Organization</h1>

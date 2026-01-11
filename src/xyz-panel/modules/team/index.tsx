@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import PageHead from "@/xyz-panel/components/PageHead";
 import globalHook from "@/hooks/global";
 import { type SchemaTeamData } from "@/xyz-panel/types/team";
 import { deleteTeam, getTeam } from "@/xyz-panel/api/team";
@@ -57,11 +57,7 @@ const Team = () => {
   }, []);
   return (
     <>
-      <Helmet>
-        <title>
-          Teams - X-LABS.my.id | Inovasi dan Pengembangan Aplikasi Mobile
-        </title>
-      </Helmet>
+      <PageHead title="Teams" />
       <div className="w-full">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-4xl font-bold">Team</h1>

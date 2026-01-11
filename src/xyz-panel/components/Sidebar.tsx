@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { FaSignOutAlt } from "react-icons/fa";
 import { menuConfig } from "../config/menu";
 
@@ -6,11 +6,11 @@ interface SidebarProps {
   user: any;
   onLogout: () => void;
   isOpen: boolean;
-  onToggle: () => void;
 }
 
-const Sidebar = ({ user, onLogout, isOpen, onToggle }: SidebarProps) => {
+const Sidebar = ({ user, onLogout, isOpen }: SidebarProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   console.log("Sidebar received user:", user);
   console.log("Sidebar isOpen:", isOpen);
@@ -93,6 +93,7 @@ const Sidebar = ({ user, onLogout, isOpen, onToggle }: SidebarProps) => {
               {/* Category Items */}
               {category.items.map((item, itemIndex) => {
                 const Icon = item.icon;
+                const isActive = location.pathname === item.path;
                 return (
                   <ul key={itemIndex} className="menu-list p-0 w-full">
                     <li className={`${!isOpen ? "flex justify-center" : ""}`}>
@@ -101,6 +102,10 @@ const Sidebar = ({ user, onLogout, isOpen, onToggle }: SidebarProps) => {
                           !isOpen
                             ? "tooltip tooltip-right justify-center w-10 h-10 p-0"
                             : ""
+                        } ${
+                          isActive
+                            ? "bg-primary text-primary-content shadow-md"
+                            : "hover:bg-base-300"
                         }`}
                         data-tip={!isOpen ? item.label : undefined}
                         onClick={() => navigate(item.path)}
@@ -122,12 +127,13 @@ const Sidebar = ({ user, onLogout, isOpen, onToggle }: SidebarProps) => {
           {/* Logout Button (Mobile) */}
           {/* Logout Button (Mobile) */}
           <li className="mt-auto md:hidden lg:hidden xl:hidden px-2 pb-4">
+            <div className="divider my-2"></div>
             <button
-              className="btn btn-ghost w-full justify-start gap-3 hover:bg-error/10 hover:text-error transition-colors text-error/80"
+              className="btn bg-error/90 hover:bg-error w-full justify-start gap-3 transition-colors text-white font-medium shadow-sm"
               onClick={onLogout}
             >
               <FaSignOutAlt className="text-lg" />
-              <span className="font-medium">Logout</span>
+              <span>Logout</span>
             </button>
           </li>
         </ul>
